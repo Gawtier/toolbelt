@@ -445,7 +445,8 @@ const CHART_PROP_NAMES = [
 
 const WHITELIST: Record<LayoutDomain, WhitelistEntry[]> = {
   folders: [
-    entry(['add'], `/folders/-`),
+    // add /folders/- is rejected by the server (business rule: top-level folders
+    // cannot be created directly; use /folders/<mainId>/children/- instead).
     entry(['remove'], `/folders/${NUM_OR_UUID}`),
     entry(['replace'], `/folders/${NUM_OR_UUID}/(name|icon)`),
     entry(['add'], `/folders/${NUM_OR_UUID}/children/-`),
